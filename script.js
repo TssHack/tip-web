@@ -1,3 +1,18 @@
+document.getElementById('themeToggle').addEventListener('click', function() {
+    const body = document.body;
+    const currentMode = body.classList.contains('light-mode') ? 'light' : 'dark';
+    if (currentMode === 'light') {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        document.getElementById('themeToggle').textContent = '🌕'; // نشان تغییر به تم روشن
+    } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        document.getElementById('themeToggle').textContent = '🌙'; // نشان تغییر به تم تاریک
+    }
+});
+
+// اضافه کردن قابلیت پیگیری کد رهگیری
 document.getElementById('trackingForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     const trackingCode = document.getElementById('trackingCode').value.trim();
@@ -51,7 +66,10 @@ document.getElementById('trackingForm').addEventListener('submit', async functio
     }
 });
 
+// دکمه بازگشت برای بازگشت به فرم اولیه
 document.getElementById('backButton').addEventListener('click', function() {
     document.getElementById('packageInfo').classList.add('hidden');
-    document.getElementById('trackingForm').reset();
+    document.getElementById('trackingForm').classList.remove('hidden');
+    document.getElementById('error').classList.add('hidden');
+    document.getElementById('loading').classList.add('hidden');
 });
