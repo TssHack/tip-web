@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیگیری مرسوله تیپاکس</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@400;500&family=Shabnam:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://www.tipaxco.com/images/logo.png" alt="Logo" class="logo">
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <h1>پیگیری مرسوله تیپاکس</h1>
+            <p>برای پیگیری مرسوله خود، کد رهگیری را وارد کنید.</p>
+
+            <form id="trackingForm" class="form-container">
+                <input type="text" id="trackingCode" placeholder="کد رهگیری" required>
+                <button type="submit" class="btn-submit">پیگیری</button>
+            </form>
+
+            <div id="loading" class="hidden">لطفاً کمی صبر کنید...</div>
+            <div id="error" class="hidden">🚨 متاسفانه اطلاعاتی برای این کد رهگیری پیدا نشد.</div>
+
+            <div id="packageInfo" class="hidden">
+                <h2>اطلاعات مرسوله</h2>
+                <div id="packageDetails"></div>
+                <button id="backButton" class="btn-back">بازگشت</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 | طراحی و توسعه توسط <a href="https://t.me/abj0o" target="_blank">احسان فضلی</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
