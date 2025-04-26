@@ -23,11 +23,11 @@ document.getElementById('trackingForm').addEventListener('submit', async functio
         document.getElementById('packageInfo').classList.add('hidden');
 
         try {
-            const response = await fetch(`https://open.wiki-api.ir/apis-1/TipaxInfo?code=${trackingCode}`);
+            const response = await fetch(`https://open.wiki-api.ir/apis-1/TipaxInfo?key=eLwm3cR-2XegSsv-9l9DCta-q4ng622-EeuAsSy&code=${trackingCode}`);
             const data = await response.json();
 
-            if (data.status) {
-                const packageInfo = data.results;
+            if (data.detail && data.detail.status === 'success') {
+                const packageInfo = data.detail.data;
                 const senderInfo = packageInfo.sender;
                 const receiverInfo = packageInfo.receiver;
                 const statusInfo = packageInfo.status_info
@@ -35,20 +35,22 @@ document.getElementById('trackingForm').addEventListener('submit', async functio
                     .join("\n");
 
                 const message = `
-                    **📦 اطلاعات مرسوله:**
-                    **فرستنده:** ${senderInfo.name} - ${senderInfo.city}
-                    **گیرنده:** ${receiverInfo.name} - ${receiverInfo.city}
+📦 **اطلاعات مرسوله:**
+**فرستنده:** ${senderInfo.name} - ${senderInfo.city}
+**گیرنده:** ${receiverInfo.name} - ${receiverInfo.city}
 
-                    **اطلاعات بسته:**
-                    - ⚖️ وزن: ${packageInfo.weight} کیلوگرم
-                    - 💰 هزینه کل: ${packageInfo.total_cost} ریال
-                    - 💳 نوع پرداخت: ${packageInfo.pay_type}
-                    - 🌍 مسافت: ${packageInfo.city_distance} کیلومتر (زون ${packageInfo.distance_zone})
+**اطلاعات بسته:**
+- ⚖️ وزن: ${packageInfo.weight} کیلوگرم
+- 💰 هزینه بسته: ${packageInfo.package_cost} ریال
+- 💳 نوع پرداخت: ${packageInfo.pay_type}
+- 🛍️ تعداد ارسال: ${packageInfo.dispatch_count}
+- 🚫 پرداخت در محل: ${packageInfo.COD}
+- 🌍 مسافت: ${packageInfo.city_distance} کیلومتر ( ${packageInfo.distance_zone} )
 
-                    **📝 وضعیت بسته:**
-                    ${statusInfo}
+**📝 وضعیت بسته:**
+${statusInfo}
                 `;
-                
+
                 document.getElementById('packageDetails').innerText = message;
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('packageInfo').classList.remove('hidden');
